@@ -29,10 +29,10 @@ def content_types(message):
 # Informações
 @bot.message_handler(regexp="infos|info")
 def userinfo(message):
-    bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
-    bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
-    bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}.")
-    bot.send_message(message.chat.id, f"ID: {message.chat.id}.")
+    bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}")
+    bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}")
+    bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}")
+    bot.send_message(message.chat.id, f"Seu ID é:\n{message.chat.id}")
 
 
 # Data hoje
@@ -112,7 +112,7 @@ def verificar(message):
 
 @bot.message_handler(func=verificar)
 def responder(message):
-    texto = '''
+    texto = rf'''
     Olá,
     
 Esta é uma demonstração simples de um bot no Telegram:
