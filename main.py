@@ -6,8 +6,6 @@ import os
 import json
 from google_currency import convert
 
-import currency
-
 # Bot
 api_key_bot = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
@@ -27,7 +25,7 @@ def content_types(message):
 def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
-    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
+    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
 
 
 @bot.message_handler(regexp="infos")
@@ -41,14 +39,14 @@ def userinfo(message):
 def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
-    bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}.')
+    bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}')
 
 
 @bot.message_handler(regexp="hora")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
-    bot.send_message(message.chat.id, f'Agora são:\n{brasil_now}.')
+    bot.send_message(message.chat.id, f'Agora são:\n{brasil_now}')
 
 
 # Comandos
