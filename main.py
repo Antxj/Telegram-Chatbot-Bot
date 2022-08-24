@@ -1,13 +1,18 @@
 import telebot as tb
 import logging
 from datetime import datetime
+import os
 
 import currency
-# import api_bot
+
+
+KEY_BOT_HEROKU = os.environ['KEY_BOT_HEROKU']
 
 # Bot
 bot = tb.TeleBot(KEY_BOT_HEROKU)  # Heroku Config Vars
+
 # bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
+# import api_bot
 
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
