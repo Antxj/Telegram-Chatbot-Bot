@@ -27,9 +27,8 @@ def userinfo(message):
 
 
 @bot.message_handler(regexp="data")
-def hora_data(message):
-    hoje = datetime.now().strftime("Hoje é dia: %d/%m/%Y.")
-    bot.send_message(message.chat.id, f'{hoje}')
+def hoje(message):
+    bot.send_message(message.chat.id, f'{datetime.now().strftime("Hoje é dia: %d/%m/%Y.")}')
 
 
 @bot.message_handler(regexp="hora")
