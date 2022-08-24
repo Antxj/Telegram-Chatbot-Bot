@@ -5,14 +5,10 @@ import os
 
 import currency
 
-
-KEY_BOT_HEROKU = os.environ['KEY_BOT_HEROKU']
-
 # Bot
+KEY_BOT_HEROKU = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(KEY_BOT_HEROKU)  # Heroku Config Vars
 
-# bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
-# import api_bot
 
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
