@@ -38,7 +38,10 @@ def userinfo(message):
 
 @bot.message_handler(regexp="data")
 def hoje(message):
-    bot.send_message(message.chat.id, f'Hoje é dia:\n{datetime.now().strftime("%d/%m/%Y")}.')
+    tz = pytz.timezone('America/Sao_Paulo')
+    brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
+    bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}.')
+
 
 
 @bot.message_handler(regexp="hora")
