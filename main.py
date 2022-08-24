@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 
 import currency
-import api_bot
+# import api_bot
 
 # Bot
 bot = tb.TeleBot(KEY_BOT_HEROKU)  # Heroku Config Vars ENV['S3_KEY']
