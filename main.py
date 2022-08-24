@@ -71,7 +71,7 @@ def docs(message):
 
 
 # Áudio
-@bot.message_handler(commands=["áudio"])
+@bot.message_handler(commands=["audio"])
 def audio(message):
     # sendAudio
     bot.send_message(message.chat.id, 'Enviando como Áudio:')
@@ -98,7 +98,7 @@ def fotos(message):
 
 
 # Cotação do dólar
-@bot.message_handler(commands=["dólar"])
+@bot.message_handler(commands=["dolar"])
 def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
@@ -123,7 +123,8 @@ Interagindo por comandos, clique:
 /docs - Receber um documento.
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
-/dolar - Ver a cotação do dólar.
+/dolar - Ver a cotação do dólar.\
+/Família - Testando, aguarde...
 
 Interagindo por palavras, envie por exemplo:
 
