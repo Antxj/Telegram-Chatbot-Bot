@@ -6,7 +6,7 @@ import currency
 # import api_bot
 
 # Bot
-bot = tb.TeleBot(KEY_BOT_HEROKU)  # Heroku Config Vars ENV['S3_KEY']
+bot = tb.TeleBot(KEY_BOT_HEROKU2)  # Heroku Config Vars ENV['S3_KEY']
 # bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
 
 logger = tb.logger
