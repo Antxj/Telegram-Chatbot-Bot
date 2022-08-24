@@ -1,4 +1,4 @@
 telebot~=0.0.4
 requests~=2.28.1
 google_currency~=1.0.10
-pytelegrambotapi~=4.7.0
+pyTelegramBotAPI==4.7.0
