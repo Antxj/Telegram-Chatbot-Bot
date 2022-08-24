@@ -50,8 +50,8 @@ def agora(message):
 
 
 # Comandos
-@bot.message_handler(commands=["docs"])
-def docs(message):
+@bot.message_handler(commands=["video"])
+def videos(message):
     # sendVideo
     bot.send_message(message.chat.id, 'Segue a papelada...')
     video = open('media/videosample.mp4', 'rb')
