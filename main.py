@@ -24,9 +24,9 @@ def content_types(message):
 @bot.message_handler(regexp="dolar")
 def currency2(message):
     bot.send_message(message.chat.id, 'Conferindo...')
-    # currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
-    # resultado_currency = currency_dic['amount'].replace(".", ",")
-    # bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
+    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
+    resultado_currency = currency_dic['amount'].replace(".", ",")
+    bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
 
 
 @bot.message_handler(regexp="infos")
@@ -41,7 +41,6 @@ def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
     bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}.')
-
 
 
 @bot.message_handler(regexp="hora")
