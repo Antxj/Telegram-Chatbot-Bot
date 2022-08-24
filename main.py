@@ -27,7 +27,7 @@ def content_types(message):
 
 
 # Cotação do dólar
-@bot.message_handler(regexp="dolar" and "dólar")
+@bot.message_handler(regexp="dolar")
 def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
