@@ -16,13 +16,14 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 # Recebendo diferente de texto e comando
 @bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
-    bot.reply_to(message.chat.id, 'Pô to meia cansado...só vou receber texto.')
+    bot.reply_to(message.chat.id, 'Pô to meio cansado...manda texto.')
 
 
 # Por palavra enviada
 @bot.message_handler(regexp="dolar")
-def currency2(message):
-    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {currency.currency("usd", "brl")}.')
+def currency(message):
+    currency.googlecurrency("usd", "brl")
+    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {resultado_currency}.')
 
 
 @bot.message_handler(regexp="infos")
