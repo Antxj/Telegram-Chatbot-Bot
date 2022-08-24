@@ -26,14 +26,6 @@ def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
 
 
-# Cotação do dólar
-@bot.message_handler(regexp="dolar|dólar")
-def currency2(message):
-    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
-    resultado_currency = currency_dic['amount'].replace(".", ",")
-    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
-
-
 # Informações
 @bot.message_handler(regexp="infos|info")
 def userinfo(message):
@@ -102,6 +94,15 @@ def fotos(message):
     bot.send_message(message.chat.id, 'Se quiser ver todas, acesse: https://webbtelescope.org/resource-gallery/images')
 
 
+# Cotação do dólar
+@bot.message_handler(commands=["dolar|dólar"])
+def currency2(message):
+    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
+    resultado_currency = currency_dic['amount'].replace(".", ",")
+    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
+
+
+
 # Menu padrão se não bater com nada
 def verificar(message):
     return True
@@ -120,14 +121,13 @@ Interagindo por comandos, clique:
 /docs - Receber os documentos.
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
+/dólar - Ver a cotação do dólar.
 
 Interagindo por palavras, envie por exemplo:
 
-Hora
-Data
-Dólar
-Infos
-Json
+Hora - 
+Data - 
+Infos - 
 
       '''
     bot.send_message(message.chat.id, texto)
