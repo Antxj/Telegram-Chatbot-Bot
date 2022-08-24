@@ -34,21 +34,21 @@ def currency2(message):
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
 
 
-@bot.message_handler(regexp="infos")
+@bot.message_handler(regexp="infos|info")
 def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
     bot.send_message(message.chat.id, f"Está é uma conversa: {message.chat.type}.")
 
 
-@bot.message_handler(regexp="data")
+@bot.message_handler(regexp="data|hoje")
 def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
     bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}')
 
 
-@bot.message_handler(regexp="hora")
+@bot.message_handler(regexp="hora|agora")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
@@ -119,10 +119,10 @@ Interagindo por comandos, clique:
 
 Interagindo por palavras, envie por exemplo:
 
-hora
-data
-dolar
-infos
+Hora
+Data
+Dólar
+Infos
 
       '''
     bot.send_message(message.chat.id, texto)
