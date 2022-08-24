@@ -6,8 +6,8 @@ import os
 import currency
 
 # Bot
-KEY_BOT_HEROKU = os.environ['KEY_BOT_HEROKU']
-bot = tb.TeleBot(KEY_BOT_HEROKU)  # Heroku Config Vars
+api_key_bot = os.environ['KEY_BOT_HEROKU']
+bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
 
 logger = tb.logger
