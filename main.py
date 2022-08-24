@@ -6,7 +6,7 @@ import currency
 import api_bot
 
 # Bot
-bot = tb.TeleBot(api_bot_heroku)  # Heroku Config Vars
+bot = tb.TeleBot(key_bot_heroku)  # Heroku Config Vars
 # bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
 
 logger = tb.logger
