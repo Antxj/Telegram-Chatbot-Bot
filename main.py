@@ -34,13 +34,16 @@ def currency2(message):
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
 
 
+# Informações
 @bot.message_handler(regexp="infos|info")
 def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
-    bot.send_message(message.chat.id, f"Está é uma conversa: {message.chat.type}.")
+    bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}.")
+    bot.send_message(message.chat.id, f"ID: {message.chat.id}.")
 
 
+# Data hoje
 @bot.message_handler(regexp="data|hoje")
 def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
@@ -48,6 +51,7 @@ def hoje(message):
     bot.send_message(message.chat.id, f'Hoje é dia:\n{brasil_hoje}')
 
 
+# Hora atual
 @bot.message_handler(regexp="hora|agora")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
@@ -123,6 +127,7 @@ Hora
 Data
 Dólar
 Infos
+Json
 
       '''
     bot.send_message(message.chat.id, texto)
