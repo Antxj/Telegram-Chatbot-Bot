@@ -121,9 +121,9 @@ Interagindo por comandos, clique:
 
 /fotos - Receber fotos do Telescópio Espacial James Webb.
 /docs - Receber um documento.
-/áudio - Receber um áudio. 
+/audio - Receber um áudio. 
 /video - Receber um vídeo. 
-/dólar - Ver a cotação do dólar.
+/dolar - Ver a cotação do dólar.
 
 Interagindo por palavras, envie por exemplo:
 
