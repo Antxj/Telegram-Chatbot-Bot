@@ -22,11 +22,11 @@ def content_types(message):
 
 # Por palavra enviada
 @bot.message_handler(regexp="dolar")
-def currency(message):
-    bot.reply_to(message.chat.id, 'Conferindo...')
-    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
-    resultado_currency = currency_dic['amount'].replace(".", ",")
-    bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
+def currency2(message):
+    bot.send_message(message.chat.id, 'Conferindo...')
+    # currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
+    # resultado_currency = currency_dic['amount'].replace(".", ",")
+    # bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
 
 
 @bot.message_handler(regexp="infos")
