@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 import os
 import json
-from google_currency import convert as convertercurrency
+from google_currency import convert
 
 
 # Bot
@@ -23,7 +23,8 @@ def content_types(message):
 # Por palavra enviada
 @bot.message_handler(regexp="dolar")
 def currency(message):
-    currency_dic = json.loads(convertercurrency('usd', 'brl', 1))  # json to dic
+    bot.reply_to(message.chat.id, 'Conferindo...')
+    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
     bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
 
