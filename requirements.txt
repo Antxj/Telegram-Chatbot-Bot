@@ -1,2 +1,5 @@
 telebot~=0.0.4
 requests~=2.28.1
+google_currency
+pytelegrambotapi
+
