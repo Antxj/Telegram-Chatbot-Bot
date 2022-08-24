@@ -17,7 +17,7 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 # Recebendo diferente de texto e comando
 @bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
-    bot.reply_to(message.chat.id, 'Pô to meio cansado...manda texto.')
+    bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
 
 
 # Cotação do dólar
@@ -59,7 +59,6 @@ def docs(message):
     # sendVideoNote
     videonote = open('media/videosample.mp4', 'rb')
     bot.send_video_note(message.chat.id, videonote)
-
 
 
 @bot.message_handler(commands=["docs"])
