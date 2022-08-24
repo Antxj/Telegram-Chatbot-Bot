@@ -22,7 +22,7 @@ def currency2(message):
 
 @bot.message_handler(regexp="infos")
 def userinfo(message):
-    bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.")
+    bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
 
 
@@ -32,9 +32,8 @@ def hoje(message):
 
 
 @bot.message_handler(regexp="hora")
-def agorahora(message):
-    agorahora = datetime.now().strftime("Agora são: %Hh%Mm.")
-    bot.send_message(message.chat.id, f'{agorahora}')
+def agora(message):
+    bot.send_message(message.chat.id, f'{datetime.now().strftime("Agora são: %Hh%Mm.")}')
 
 
 # Comandos
