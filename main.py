@@ -120,7 +120,7 @@ Esta é uma demonstração simples de um bot no Telegram:
 Interagindo por comandos, clique:
 
 /fotos - Receber fotos do Telescópio Espacial James Webb.
-/docs - Receber os documentos.
+/docs - Receber um documento.
 /áudio - Receber um áudio. 
 /video - Receber um vídeo. 
 /dólar - Ver a cotação do dólar.
