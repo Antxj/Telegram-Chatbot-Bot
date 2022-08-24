@@ -27,12 +27,12 @@ def userinfo(message):
 
 @bot.message_handler(regexp="data")
 def hoje(message):
-    bot.send_message(message.chat.id, f'{datetime.now().strftime("Hoje é dia: %d/%m/%Y.")}')
+    bot.send_message(message.chat.id, f'Hoje é dia:\n{datetime.now().strftime("%d/%m/%Y")}.')
 
 
 @bot.message_handler(regexp="hora")
 def agora(message):
-    bot.send_message(message.chat.id, f'{datetime.now().strftime("Agora são: %Hh%Mm.")}')
+    bot.send_message(message.chat.id, f'Agora são:\n{datetime.now().strftime("%Hh%Mm")}.')
 
 
 # Comandos
