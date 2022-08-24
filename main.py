@@ -27,6 +27,7 @@ def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
     bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
+    bot.send_message(message.chat.id, 'Deu erro, pera aí!')
 
 
 @bot.message_handler(regexp="infos")
