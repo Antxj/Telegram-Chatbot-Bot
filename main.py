@@ -22,7 +22,8 @@ def content_types(message):
 # Por palavra enviada
 @bot.message_handler(regexp="dolar")
 def currency(message):
-    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {currency.moedacheck("usd", "brl")}.')
+    currency.moedacheck("usd", "brl")
+    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {resultado_currency}.')
 
 
 @bot.message_handler(regexp="infos")
