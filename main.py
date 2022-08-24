@@ -18,6 +18,12 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
+    with open('users_start.txt', 'a') as txt:
+        texto = f"#1#'chatidz': {message.chat.id}, 'usernamez': '{message.from_user.username}'#2#\n"
+        texto = texto.replace("#1#", "{")
+        texto = texto.replace('#2#', '}')
+        print(texto)
+        txt.write(texto)
 
 
 # Recebendo arquivos e etc
