@@ -99,4 +99,5 @@ infos
     bot.send_message(message.chat.id, texto)
 
 
+# Sempre aguardando interação
 bot.infinity_polling()
