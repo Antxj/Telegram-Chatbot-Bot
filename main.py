@@ -1,6 +1,8 @@
 import telebot as tb
 import logging
 from datetime import datetime
+import pytz
+
 import os
 import json
 from google_currency import convert
@@ -43,7 +45,9 @@ def hoje(message):
 
 @bot.message_handler(regexp="hora")
 def agora(message):
-    bot.send_message(message.chat.id, f'Agora são:\n{datetime.now().strftime("%Hh%Mm")}.')
+    tz = pytz.timezone('America/Sao_Paulo')
+    brasil_now = datetime.now(tz).strftime("%Hh%Mm")
+    bot.send_message(message.chat.id, f'Agora são:\n{brasil_now}.')
 
 
 # Comandos
