@@ -13,16 +13,25 @@ logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
 
-# Por escrita
+# Recebendo diferente de texto e comando
+@bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
+def conteudotypes(message):
+    bot.reply_to(message.chat.id, 'Pô to meia cansado...só vou receber texto.')
+
+
+# Por palavra enviada
 @bot.message_handler(regexp="dolar")
 def currency2(message):
-    bot.send_message(message.chat.id, f'Cotação atual do dólar: {currency.currency("usd", "brl")}.')
+    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {currency.currency("usd", "brl")}.')
 
 
 @bot.message_handler(regexp="infos")
 def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
+    bot.send_message(message.chat.id, f"Está é uma conversa: {message.chat.type}.")
+
+
 
 
 @bot.message_handler(regexp="data")
