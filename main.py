@@ -2,11 +2,9 @@ import telebot as tb
 import logging
 from datetime import datetime
 import pytz
-
 import os
 import json
 from google_currency import convert
-
 
 # Bot
 api_key_bot = os.environ['KEY_BOT_HEROKU']
