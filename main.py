@@ -109,7 +109,7 @@ def currency2(message):
 @bot.message_handler(commands=["privado"])
 def sendpeloid(message):
     id_destino = message.chat.id
-    bot.send_message(id_destino, "Oi! Eu sou um bot")
+    bot.send_message(id_destino, "Oi! Eu sou um bot!")
 
 
 # Menu padrão se não bater com nada
