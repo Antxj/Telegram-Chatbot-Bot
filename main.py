@@ -51,7 +51,7 @@ def agora(message):
     bot.send_message(message.chat.id, f'Agora são:\n{brasil_now}')
 
 
-# Comandos
+# Vídeo
 @bot.message_handler(commands=["video"])
 def videos(message):
     # sendVideo
@@ -59,6 +59,7 @@ def videos(message):
     bot.send_video(message.chat.id, video)
 
 
+# Documentos
 @bot.message_handler(commands=["docs"])
 def docs(message):
     bot.send_message(message.chat.id, 'Segue a papelada...')
@@ -69,7 +70,8 @@ def docs(message):
     bot.send_document(message.chat.id, docx_file)
 
 
-@bot.message_handler(commands=["audio"])
+# Áudio
+@bot.message_handler(commands=["áudio"])
 def audio(message):
     # sendAudio
     bot.send_message(message.chat.id, 'Enviando como Áudio:')
@@ -81,6 +83,7 @@ def audio(message):
     bot.send_voice(message.chat.id, voice_file)
 
 
+# Fotos
 @bot.message_handler(commands=["fotos"])
 def fotos(message):
     # sendPhoto
@@ -102,7 +105,6 @@ def currency2(message):
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
 
 
-
 # Menu padrão se não bater com nada
 def verificar(message):
     return True
@@ -119,15 +121,16 @@ Interagindo por comandos, clique:
 
 /fotos - Receber fotos do Telescópio Espacial James Webb.
 /docs - Receber os documentos.
-/audio - Receber um áudio. 
+/áudio - Receber um áudio. 
 /video - Receber um vídeo. 
 /dólar - Ver a cotação do dólar.
 
 Interagindo por palavras, envie por exemplo:
 
-Hora - 
-Data - 
-Infos - 
+Hora
+Data
+Info
+Agora
 
       '''
     bot.send_message(message.chat.id, texto)
