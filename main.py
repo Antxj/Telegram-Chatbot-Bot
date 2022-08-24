@@ -36,7 +36,7 @@ def userinfo(message):
 
 
 # Data hoje
-@bot.message_handler(regexp="data|hoje")
+@bot.message_handler(regexp="data|hoje|hj")
 def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
@@ -44,7 +44,7 @@ def hoje(message):
 
 
 # Hora atual
-@bot.message_handler(regexp="hora|agora")
+@bot.message_handler(regexp="hora|agora|horario|now")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
@@ -105,6 +105,13 @@ def currency2(message):
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
 
 
+# Enviar mensagem
+@bot.message_handler(commands=["privado"])
+def sendpeloid(message):
+    id_destino = message.chat.id
+    bot.send_message(id_destino, "Oi! Eu sou um bot")
+
+
 # Menu padrão se não bater com nada
 def verificar(message):
     return True
@@ -112,7 +119,7 @@ def verificar(message):
 
 @bot.message_handler(func=verificar)
 def responder(message):
-    texto = rf'''
+    texto = f'''
     Olá,
     
 Esta é uma demonstração simples de um bot no Telegram:
@@ -123,7 +130,8 @@ Interagindo por comandos, clique:
 /docs - Receber um documento.
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
-/dolar - Ver a cotação do dólar.\
+/dolar - Ver a cotação do dólar.
+/privado - Receber uma mensagem do bot.
 /Família - Testando, aguarde...
 
 Interagindo por palavras, envie por exemplo:
@@ -132,10 +140,11 @@ Hora
 Data
 Info
 Agora
-
       '''
     bot.send_message(message.chat.id, texto)
 
 
 # Sempre aguardando interação
 bot.infinity_polling()
+
+# bot.send_message(123456798, 'Hi! I\'m a Bot!')
