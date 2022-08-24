@@ -20,7 +20,7 @@ def send_welcome(message):
     bot.send_message(message.chat.id, "Bem-vindo(a)!")
 
 
-# Recebendo diferente de texto e comando
+# Recebendo arquivos e etc
 @bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
@@ -117,14 +117,13 @@ Interagindo por comandos, clique:
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
 
-
-    
 Interagindo por palavras, envie por exemplo:
 
 hora
 data
-dolar
+dólar
 infos
+
       '''
     bot.send_message(message.chat.id, texto)
 
