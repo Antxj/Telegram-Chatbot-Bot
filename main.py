@@ -17,7 +17,7 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 # Bem-vindo(a)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Bem-vindo(a)!")
+    bot.send_message(message.chat.id, "Bem-vindo(a)!")
 
 
 # Recebendo diferente de texto e comando
