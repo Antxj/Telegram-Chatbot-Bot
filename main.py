@@ -2,8 +2,9 @@ import telebot as tb
 import logging
 from datetime import datetime
 import os
+import json
+from google_currency import convert as convertercurrency
 
-import currency
 
 # Bot
 api_key_bot = os.environ['KEY_BOT_HEROKU']
@@ -22,8 +23,9 @@ def content_types(message):
 # Por palavra enviada
 @bot.message_handler(regexp="dolar")
 def currency(message):
-    currency.moedacheck("usd", "brl")
-    bot.reply_to(message.chat.id, f'Cotação atual do dólar: {resultado_currency}.')
+    currency_dic = json.loads(convertercurrency('usd', 'brl', 1))  # json to dic
+    resultado_currency = currency_dic['amount'].replace(".", ",")
+    bot.reply_to(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
 
 
 @bot.message_handler(regexp="infos")
