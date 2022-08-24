@@ -95,7 +95,7 @@ def fotos(message):
 
 
 # Cotação do dólar
-@bot.message_handler(commands=["dolar|dólar"])
+@bot.message_handler(commands=["dólar"])
 def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
