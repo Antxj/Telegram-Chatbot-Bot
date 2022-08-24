@@ -5,7 +5,7 @@ from datetime import datetime
 import currency
 # import api_bot
 
-api_bot = KEY_BOT_HEROKU  # Heroku Config Vars
+api_bot = KEY_BOT_HEROKU2  # Heroku Config Vars
 
 # Bot
 bot = tb.TeleBot(api_bot)  # Heroku Config Vars
