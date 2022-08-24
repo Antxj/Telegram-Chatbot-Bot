@@ -15,7 +15,7 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 
 # Recebendo diferente de texto e comando
 @bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
-def conteudotypes(message):
+def content_types(message):
     bot.reply_to(message.chat.id, 'Pô to meia cansado...só vou receber texto.')
 
 
@@ -30,8 +30,6 @@ def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}.\n")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}.")
     bot.send_message(message.chat.id, f"Está é uma conversa: {message.chat.type}.")
-
-
 
 
 @bot.message_handler(regexp="data")
