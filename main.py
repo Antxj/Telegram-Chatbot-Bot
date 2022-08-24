@@ -6,6 +6,8 @@ import os
 import json
 from google_currency import convert
 
+import currency
+
 # Bot
 api_key_bot = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
@@ -20,14 +22,12 @@ def content_types(message):
     bot.reply_to(message.chat.id, 'Pô to meio cansado...manda texto.')
 
 
-# Por palavra enviada
-@bot.message_handler(regexp="dolar")
+# Cotação do dólar
+@bot.message_handler(regexp="dolar" or "real")
 def currency2(message):
-    bot.send_message(message.chat.id, 'Conferindo...')
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}.')
-    bot.send_message(message.chat.id, 'Deu erro, pera aí!')
 
 
 @bot.message_handler(regexp="infos")
