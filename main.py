@@ -52,6 +52,18 @@ def agora(message):
 # Comandos
 @bot.message_handler(commands=["docs"])
 def docs(message):
+    # sendVideo
+    bot.send_message(message.chat.id, 'Segue a papelada...')
+    video = open('media/videosample.mp4', 'rb')
+    bot.send_video(message.chat.id, video)
+    # sendVideoNote
+    videonote = open('media/videosample.mp4', 'rb')
+    bot.send_video_note(message.chat.id, videonote)
+
+
+
+@bot.message_handler(commands=["docs"])
+def docs(message):
     bot.send_message(message.chat.id, 'Segue a papelada...')
     # sendDocument
     pdf_file = open('media/arquivopdf.pdf', 'rb')
@@ -99,9 +111,12 @@ Esta é uma demonstração simples de um bot no Telegram:
 
 Interagindo por comandos, clique:
 
-/docs - Receber os documentos.
-/audio - Recebe um áudio. 
 /fotos - Receber fotos do Telescópio Espacial James Webb.
+/docs - Receber os documentos.
+/audio - Receber um áudio. 
+/video - Receber um vídeo. 
+
+
     
 Interagindo por palavras, envie por exemplo:
 
