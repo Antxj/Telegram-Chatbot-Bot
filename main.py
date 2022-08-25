@@ -7,15 +7,16 @@ import json
 from google_currency import convert
 import requests
 import pandas as pd
-import apis_key
-
 
 
 # Keys
 # api_key_bot = os.environ['KEY_BOT_HEROKU']
 # api_key_clima = os.environ['KEY_CLIMA_HEROKU']
+
+# import apis_key
 # api_key_clima = apis_key.api_key_clima
 # api_key_bot = apis_key.api_bot
+
 api_key_bot = os.environ['KEY_BOT_RENDER']
 api_key_clima = os.environ['KEY_CLIMA_RENDER']
 
