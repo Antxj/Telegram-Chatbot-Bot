@@ -151,6 +151,17 @@ def sendpeloid(message):
     bot.send_message(id_destino, "Oi! Eu sou um bot!")
 
 
+# Criador, eu :)
+@bot.message_handler(commands=['criador'])
+def send_criador(message):
+    add_text = """
+    Meu primeiro 'Hello World!' foi graças a este indivíduo:    
+    [LinkedIn](www.linkedin.com/in/antxara/)
+    [GitHub](https://github.com/Antxj) 
+        """
+    bot.send_message(message.chat.id, text=add_text, parse_mode="markDown", disable_web_page_preview=True)
+
+
 # Menu padrão se não bater com nada
 def verificar(message):
     return True
@@ -168,8 +179,9 @@ Interagindo por comandos, clique:
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
 /privado - Receber uma mensagem do bot.
-/ideia - *Implementando* Enviar uma ideia para ser inserir no bot futuramente.
-/criador - *Implementando* Enviar uma ideia para ser inserir no bot futuramente.
+/criador - Criador do bot.
+/ideia - *Implementando* Enviar uma ideia ao criador do bot.
+
 
 Interagindo por palavras, envie por exemplo:
 
