@@ -22,8 +22,9 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
-    bot.send_message(message.chat.id, text="<a href='https://www.google.com/'>Google</a>", parse_mode="HTML")
-    bot.send_message(message.chat.id, text="[Google](https://www.google.com/)", parse_mode="markDown")
+    bot.send_message(message.chat.id, f"Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github.")
+    bot.send_message(message.chat.id, text="<a href='www.linkedin.com/in/antxara/'>LinkedIn</a>", parse_mode="HTML")
+    bot.send_message(message.chat.id, text="[GitHub](https://github.com/Antxj)", parse_mode="markDown")
 
 
 # Recebendo arquivos e etc...
@@ -155,10 +156,6 @@ def verificar(message):
 @bot.message_handler(func=verificar)
 def responder(message):
     texto = f'''
-    Olá,
-    
-Esta é uma demonstração de um bot no Telegram para ser inserido no LinkedIn e Github.
-
 
 Interagindo por comandos, clique:
 
