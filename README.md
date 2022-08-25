@@ -5,4 +5,4 @@ https://t.me/AntxjTelegramBot
 
 ![](media/img.png) 
 
-Deploy feito no Render.com :)
+Deploy feito no Heroku :)
