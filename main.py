@@ -10,8 +10,8 @@ from google_currency import convert
 api_key_bot = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
-# import api_bot
-# bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
+# import apis_key
+# bot = tb.TeleBot(apis_key.py.api_bot)  # Pycharm local
 
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
@@ -55,7 +55,21 @@ def agora(message):
     bot.send_message(message.chat.id, f'Agora são:\n{brasil_now}')
 
 
-# Vídeo
+# Clima
+@bot.message_handler(commands=['clima'])
+def handle_text(message):
+    cid = message.chat.id
+    msgclima = bot.send_message(cid, 'Quer saber o clima de qual cidade?')
+    bot.register_next_step_handler(msgclima, step_Set_Clima)
+
+
+def step_Set_Clima(message):
+    cid = message.chat.id
+    usercidade = message.text
+    bot.send_message(cid, f'Cidade:\n{usercidade}.')
+
+
+    # Vídeo
 @bot.message_handler(commands=["video"])
 def videos(message):
     # sendVideo
