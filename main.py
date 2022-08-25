@@ -5,9 +5,13 @@ import pytz
 import os
 import json
 from google_currency import convert
+import requests
+
+# Keys
+api_key_bot = os.environ['KEY_BOT_HEROKU']
+api_key_clima = os.environ['KEY_CLIMA_HEROKU']
 
 # Bot
-api_key_bot = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
 # import apis_key
@@ -57,19 +61,33 @@ def agora(message):
 
 # Clima
 @bot.message_handler(commands=['clima'])
-def handle_text(message):
-    cid = message.chat.id
-    msgclima = bot.send_message(cid, 'Quer saber o clima de qual cidade?')
+def handle_clima(message):
+    msgclima = bot.send_message(message.chat.id, 'Quer saber o clima de qual cidade?')
     bot.register_next_step_handler(msgclima, step_Set_Clima)
 
 
 def step_Set_Clima(message):
-    cid = message.chat.id
-    usercidade = message.text
-    bot.send_message(cid, f'Cidade:\n{usercidade}.')
+    cidade = message.text
+    requisicao = requests.get(
+        f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
+
+    if requisicao != 200:
+        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, desisto!')
+
+    else:
+        requisicao_dic = requisicao.json()
+
+        temperatura = requisicao_dic['main']['temp'] - 273.15
+        descricao = requisicao_dic['weather'][0]['description']
+        sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
+
+        bot.send_message(message.chat.id, f'O tempo em {cidade.capitalize()}:')
+        bot.send_message(message.chat.id, f'Temperatura: {temperatura:.2f}°C')
+        bot.send_message(message.chat.id, f'Céu: {descricao.capitalize()}')
+        bot.send_message(message.chat.id, f'Sensação térmica de: {sensacaotermica:.2f}°C')
 
 
-    # Vídeo
+# Vídeo
 @bot.message_handler(commands=["video"])
 def videos(message):
     # sendVideo

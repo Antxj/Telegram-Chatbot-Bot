@@ -1,30 +1,37 @@
 import apis_key
+import requests
+
 api_key_clima = apis_key.api_key_clima
 
 # api_key_clima = os.environ['KEY_BOT_HEROKU']
 
 
-cidade_atual = input('Favor inserir o nome de uma cidade: ').lower()
-
-link = f'https://api.openweathermap.org/data/2.5/weather?q={cidade_atual}&appid={api_key}&lang=pt_br'
-
-requisicao_atual = requests.get(link)  # 200 = Válida / 404  = Inválida
+cidade = 'brasilia'
+cidade = cidade.lower()
 
 
-while requisicao_atual.status_code != 200:
-    print('Cidade inválida, tente novamente.')
-    cidade_atual = input('Favor inserir o nome de uma cidade: ').lower()
-    link = f'https://api.openweathermap.org/data/2.5/weather?q={cidade_atual}&appid={api_key}&lang=pt_br'
-    requisicao_atual = requests.get(link)
 
-requisicao_dic_atual = requisicao_atual.json()
-# print(requisicao_dic_atual)
 
-temperatura_atual = requisicao_dic_atual['main']['temp'] - 273.15
-descricao_atual = requisicao_dic_atual['weather'][0]['description']
-sensacao_termica_atual = requisicao_dic_atual['main']['feels_like'] - 273.15
+def clima(cidade):
+    requisicao = requests.get(
+        f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
 
-print(f'O tempo em {cidade_atual.capitalize()}:')
-print(f'Temperatura: {temperatura_atual:.2f}°C')
-print(f'Céu: {descricao_atual.capitalize()}')
-print(f'Sensação térmica de: {sensacao_termica_atual:.2f}°C')
+    if requisicao != 200:
+        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, desisto!')
+
+    else:
+        requisicao_dic = requisicao.json()
+        # print(requisicao_dic_atual)
+
+        temperatura = requisicao_dic['main']['temp'] - 273.15
+        descricao = requisicao_dic['weather'][0]['description']
+        sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
+
+        bot.send_message(message.chat.id, f'O tempo em {cidade.capitalize()}:')
+        bot.send_message(message.chat.id, f'Temperatura: {temperatura:.2f}°C')
+        bot.send_message(message.chat.id, f'Céu: {descricao.capitalize()}')
+        bot.send_message(message.chat.id, f'Sensação térmica de: {sensacaotermica:.2f}°C')
+
+
+
+
