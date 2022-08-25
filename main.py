@@ -22,6 +22,8 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
+    bot.send_message(message.chat.id, text="<a href='https://www.google.com/'>Google</a>", parse_mode=HTML)
+    bot.send_message(message.chat.id, text="[Google](https://www.google.com/)", parse_mode=markDown)
 
 
 # Recebendo arquivos e etc...
@@ -155,10 +157,8 @@ def responder(message):
     texto = f'''
     Olá,
     
-Esta é uma demonstração de um bot no Telegram para ser inserido no LinkedIn e Github, teste: 
+Esta é uma demonstração de um bot no Telegram para ser inserido no LinkedIn e Github.
 
-<a href="https://github.com/Antxj?tab=repositories">Github</a>
-[LinkedIn](www.linkedin.com/in/antxara/)
 
 Interagindo por comandos, clique:
 
