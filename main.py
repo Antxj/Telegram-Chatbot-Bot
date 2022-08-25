@@ -91,8 +91,8 @@ def step_Set_Clima(message):
         descricao = requisicao_dic['weather'][0]['description']
         sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
         resposta_clima = f'''O clima em {cidade.capitalize()}:\n
-Temperatura: {temperatura:.2f}°C\n
-Céu: {descricao.capitalize()}\n
+Temperatura: {temperatura:.2f}°C
+Céu: {descricao.capitalize()}
 Sensação térmica de: {sensacaotermica:.2f}°C'''
         bot.send_message(message.chat.id, resposta_clima)
 
