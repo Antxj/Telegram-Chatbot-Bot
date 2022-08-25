@@ -169,6 +169,7 @@ Interagindo por comandos, clique:
 /video - Receber um vídeo. 
 /privado - Receber uma mensagem do bot.
 /ideia - *Implementando* Enviar uma ideia para ser inserir no bot futuramente.
+/criador - *Implementando* Enviar uma ideia para ser inserir no bot futuramente.
 
 Interagindo por palavras, envie por exemplo:
 
