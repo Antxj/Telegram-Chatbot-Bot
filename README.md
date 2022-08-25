@@ -1,7 +1,7 @@
 Este é um bot para demonstração de possibilidades. <br>
 As funções são implementadas conforme ideias vão surgindo...
 
-https://web.telegram.org/k/#@AntxjTelegramBot
+https://t.me/AntxjTelegramBot
 
 ![](media/img.png) 
 
