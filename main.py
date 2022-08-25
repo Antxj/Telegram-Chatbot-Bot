@@ -6,6 +6,7 @@ import os
 import json
 from google_currency import convert
 import requests
+import pandas as pd
 
 # Keys
 api_key_bot = os.environ['KEY_BOT_HEROKU']
@@ -28,6 +29,11 @@ def send_welcome(message):
     [GitHub](https://github.com/Antxj) 
         """
     bot.send_message(message.chat.id, text=ad_text, parse_mode="markDown", disable_web_page_preview=True)
+
+    with open('usersinfo/users_start.csv', 'a') as csv:
+        texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}\n'
+        print(texto)
+        csv.write(texto)
 
 
 # Recebendo arquivos e etc...
@@ -156,6 +162,10 @@ def step_Set_Ideia(message):
     bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.username} ({message.from_user.first_name}), '
                                  f'ID: {message.from_user.id}:\n{ideiatexto}')
     bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada ao criador, espero que ele goste!')
+    with open('usersinfo/users_ideias.csv', 'a') as csv:
+        texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}, {ideiatexto}\n'
+        print(texto)
+        csv.write(texto)
 
 
 # Enviar mensagem
