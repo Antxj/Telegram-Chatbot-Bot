@@ -20,7 +20,7 @@ import pandas as pd
 # api_key_bot = os.environ['KEY_BOT_RENDER']
 # api_key_clima = os.environ['KEY_CLIMA_RENDER']
 
-api_key_bot = os.environ['_KEY_BOT_GOOGLE']
+api_key_bot = os.environ['_KEY_BOT_GOOGLE']#
 api_key_clima = os.environ['_KEY_CLIMA_GOOGLE']
 
 # Bot
