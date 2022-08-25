@@ -14,9 +14,6 @@ api_key_clima = os.environ['KEY_CLIMA_HEROKU']
 # Bot
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
-# import apis_key
-# bot = tb.TeleBot(apis_key.py.api_bot)  # Pycharm local
-
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
@@ -60,7 +57,7 @@ def hoje(message):
 
 
 # Hora atual
-@bot.message_handler(regexp="hora|agora|horario|now")
+@bot.message_handler(regexp="hora|agora|horário|now|horario")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
@@ -80,7 +77,7 @@ def step_Set_Clima(message):
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
-        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, tenta novamente:\n/clima')
+        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, tente novamente:\n/clima')
 
     else:
         requisicao_dic = requisition.json()
@@ -91,7 +88,7 @@ def step_Set_Clima(message):
         O clima em {cidade.capitalize()}:\n
         Temperatura: {temperatura:.2f}°C\n
         Céu: {descricao.capitalize()}\n
-        Sensação térmica de: {sensacaotermica:.2f}'''
+        Sensação térmica de: {sensacaotermica:.2f}°C'''
         bot.send_message(message.chat.id, resposta_clima)
 
 
@@ -171,11 +168,11 @@ Interagindo por comandos, clique:
 
 Interagindo por palavras, envie por exemplo:
 
-dólar - Ver a cotação do dólar.
-Hora
-Data
-Info
-Agora
+dólar, usd, dolar -> Cotação do dólar.
+hora, agora, horário, horario -> Hora atual.
+data, hoje, hj-> Data atual.
+info, infos -> Informações do usuário no Telegram.
+
       '''
     bot.send_message(message.chat.id, texto)
 
