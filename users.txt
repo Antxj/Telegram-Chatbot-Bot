@@ -1,3 +1,0 @@
-{'chatidz': 9999999, 'usernamez': 'lucas'}
-{'chatidz': 9999999, 'usernamez': 'lucas'}
-{'chatidz': 9999999, 'usernamez': 'lucas'}

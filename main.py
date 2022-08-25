@@ -10,6 +10,10 @@ from google_currency import convert
 api_key_bot = os.environ['KEY_BOT_HEROKU']
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
+# import api_bot
+# bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
+
+
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
@@ -19,7 +23,7 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
     with open('users_start.txt', 'a') as txt:
-        texto = f"#1#'chatidz': {message.chat.id}, 'usernamez': '{message.from_user.username}'#2#\n"
+        texto = f"#1#'chatid': {message.chat.id}, 'username': '{message.from_user.username}'#2#\n"
         texto = texto.replace("#1#", "{")
         texto = texto.replace('#2#', '}')
         print(texto)
@@ -138,7 +142,6 @@ Interagindo por comandos, clique:
 /video - Receber um vídeo. 
 /dolar - Ver a cotação do dólar.
 /privado - Receber uma mensagem do bot.
-/Família - Testando, aguarde...
 
 Interagindo por palavras, envie por exemplo:
 
