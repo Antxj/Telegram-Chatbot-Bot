@@ -139,8 +139,8 @@ def fotos(message):
     bot.send_photo(message.chat.id, foto_file)
     bot.send_photo(message.chat.id, foto_file2)
     bot.send_photo(message.chat.id, foto_file3)
-    bot.send_message(message.chat.id, 'Impressionante né?')
-    bot.send_message(message.chat.id, 'Se quiser ver todas, acesse: https://webbtelescope.org/resource-gallery/images')
+    bot.send_message(message.chat.id, 'Impressionante né?\nSe quiser ver todas, acesse:\n'
+                                      'https://webbtelescope.org/resource-gallery/images')
 
 
 # Ideia ao criador
