@@ -24,8 +24,9 @@ def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
     ad_text = """
     Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github:
-    [LinkedIn](www.linkedin.com/in/antxara/)<br>[GitHub](https://github.com/Antxj)
-    """
+    ![](https://www.linkedin.com/favicon.ico)[LinkedIn](www.linkedin.com/in/antxara/)
+    ![](https://github.com/favicon.ico) [GitHub](https://github.com/Antxj) 
+        """
     bot.send_message(message.chat.id, text=ad_text, parse_mode="markDown", disable_web_page_preview=True)
 
 
