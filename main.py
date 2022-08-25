@@ -155,7 +155,7 @@ def responder(message):
     texto = f'''
     Olá,
     
-Esta é uma demonstração simples de um bot no Telegram:
+Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn, teste: <a href="www.linkedin.com/in/antxara/">LinkedIn</a>
 
 Interagindo por comandos, clique:
 
@@ -165,6 +165,7 @@ Interagindo por comandos, clique:
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
 /privado - Receber uma mensagem do bot.
+/ideia - *Implementando* Enviar uma ideia para ser inserir no bot futuramente.
 
 Interagindo por palavras, envie por exemplo:
 
