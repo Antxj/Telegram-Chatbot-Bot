@@ -23,8 +23,8 @@ api_key_clima = os.environ['KEY_CLIMA_RENDER']
 # Bot
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
-logger = tb.logger
-tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
+# logger = tb.logger
+# tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
 
 # Bem-vindo(a)
