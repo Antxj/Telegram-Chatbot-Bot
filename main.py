@@ -158,6 +158,7 @@ def send_criador(message):
     Meu primeiro 'Hello World!' foi graças a este indivíduo:    
     [LinkedIn](www.linkedin.com/in/antxara/)
     [GitHub](https://github.com/Antxj) 
+    Obrigado!
         """
     bot.send_message(message.chat.id, text=add_text, parse_mode="markDown", disable_web_page_preview=True)
 
