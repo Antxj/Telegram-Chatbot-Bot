@@ -34,9 +34,8 @@ def send_welcome(message):
         texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}\n'
         print(texto)
         csv.write(texto)
-
-    users_start_data = pd.read_csv('users_start.csv')
-    print(users_start_data.head())
+        users_start_data = pd.read_csv('users_start.csv')
+        print(users_start_data.head())
 
 
 # Recebendo arquivos e etc...
@@ -169,9 +168,8 @@ def step_Set_Ideia(message):
         texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}, {ideiatexto}\n'
         print(texto)
         csv.write(texto)
-
-    users_ideias_data = pd.read_csv('usersinfo/users_ideias.csv')
-    print(users_ideias_data.head())
+        users_ideias_data = pd.read_csv('usersinfo/users_ideias.csv')
+        print(users_ideias_data.head())
 
 
 # Enviar mensagem
