@@ -7,10 +7,15 @@ import json
 from google_currency import convert
 import requests
 import pandas as pd
+import apis_key
+
+
 
 # Keys
 api_key_bot = os.environ['KEY_BOT_HEROKU']
 api_key_clima = os.environ['KEY_CLIMA_HEROKU']
+# api_key_clima = apis_key.api_key_clima
+# api_key_bot = apis_key.api_bot
 
 # Bot
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
@@ -32,9 +37,8 @@ def send_welcome(message):
 
     with open('usersinfo/users_start.csv', 'a') as csv:
         texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}\n'
-        print(texto)
         csv.write(texto)
-        users_start_data = pd.read_csv('users_start.csv')
+        users_start_data = pd.read_csv('usersinfo/users_start.csv')
         print(users_start_data.head())
 
 
@@ -166,7 +170,6 @@ def step_Set_Ideia(message):
     bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada ao criador, espero que ele goste!')
     with open('usersinfo/users_ideias.csv', 'a') as csv:
         texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}, {ideiatexto}\n'
-        print(texto)
         csv.write(texto)
         users_ideias_data = pd.read_csv('usersinfo/users_ideias.csv')
         print(users_ideias_data.head())
