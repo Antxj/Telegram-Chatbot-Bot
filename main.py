@@ -150,7 +150,6 @@ def handle_deia(message):
     bot.register_next_step_handler(msgideia, step_Set_Ideia)
 
 
-
 def step_Set_Ideia(message):
     ideiatexto = message.text
     id_criador = 1317880277  # Meu ID.
