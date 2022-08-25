@@ -153,7 +153,8 @@ def handle_deia(message):
 def step_Set_Ideia(message):
     ideiatexto = message.text
     id_criador = 1317880277  # Meu ID.
-    bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.username}({message.from_user.first_name}), ID: {message.from_user.id}:\n{ideiatexto}')
+    bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.username}({message.from_user.first_name}),'
+                                 f' ID: {message.from_user.id}:\n{ideiatexto}')
     bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada!')
 
 
