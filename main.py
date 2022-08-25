@@ -144,9 +144,16 @@ def fotos(message):
     bot.send_message(message.chat.id, 'Se quiser ver todas, acesse: https://webbtelescope.org/resource-gallery/images')
 
 
+# Ideia ao criador
+@bot.message_handler(commands=["ideia"])
+def sendideia(message):
+    id_criador = 1317880277
+    bot.send_message(id_criador, "Oi! Eu sou um bot!")
+
+
 # Enviar mensagem
 @bot.message_handler(commands=["privado"])
-def sendpeloid(message):
+def sendrivado(message):
     id_destino = message.chat.id
     bot.send_message(id_destino, "Oi! Eu sou um bot!")
 
@@ -181,7 +188,7 @@ Interagindo por comandos, clique:
 /video - Receber um vídeo. 
 /privado - Receber uma mensagem do bot.
 /criador - Criador do bot.
-/ideia - *Implementando* Enviar uma ideia ao criador do bot.
+/ideia - *Implementando* Enviar uma ideia ao criador do bot, calma.
 
 
 Interagindo por palavras, envie por exemplo:
