@@ -10,8 +10,8 @@ import pandas as pd
 
 
 # Keys
-# api_key_bot = os.environ['KEY_BOT_HEROKU']
-# api_key_clima = os.environ['KEY_CLIMA_HEROKU']
+api_key_bot = os.environ['KEY_BOT_HEROKU']
+api_key_clima = os.environ['KEY_CLIMA_HEROKU']
 
 # import apis_key
 # api_key_clima = apis_key.api_key_clima
@@ -20,14 +20,12 @@ import pandas as pd
 # api_key_bot = os.environ['KEY_BOT_RENDER']
 # api_key_clima = os.environ['KEY_CLIMA_RENDER']
 
-api_key_bot = os.environ['_KEY_BOT_GOOGLE']#
-api_key_clima = os.environ['_KEY_CLIMA_GOOGLE']
 
 # Bot
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 
-# logger = tb.logger
-# tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
+logger = tb.logger
+tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
 
 # Bem-vindo(a)
