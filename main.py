@@ -13,7 +13,6 @@ bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
 # import api_bot
 # bot = tb.TeleBot(api_bot.api_bot)  # Pycharm local
 
-
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
@@ -22,15 +21,9 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
-    with open('users_start.txt', 'a') as txt:
-        texto = f"#1#'chatid': {message.chat.id}, 'username': '{message.from_user.username}'#2#\n"
-        texto = texto.replace("#1#", "{")
-        texto = texto.replace('#2#', '}')
-        print(texto)
-        txt.write(texto)
 
 
-# Recebendo arquivos e etc
+# Recebendo arquivos e etc...
 @bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
@@ -42,7 +35,7 @@ def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}")
     bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}")
-    bot.send_message(message.chat.id, f"Seu chatid é:\n{message.chat.id}")
+    bot.send_message(message.chat.id, f"Seu chatID é:\n{message.chat.id}")
     bot.send_message(message.chat.id, f"Seu ID é:\n{message.from_user.id}")
 
 
@@ -157,4 +150,5 @@ Agora
 # Sempre aguardando interação
 bot.infinity_polling()
 
-# bot.send_message(123456798, 'Hi! I\'m a Bot!')
+# bot.send_message(1317880277, 'Hi! I\'m a Bot!')
+# bot5727655671
