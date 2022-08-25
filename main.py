@@ -42,7 +42,8 @@ def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}")
     bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}")
-    bot.send_message(message.chat.id, f"Seu ID é:\n{message.chat.id}")
+    bot.send_message(message.chat.id, f"Seu chatid é:\n{message.chat.id}")
+    bot.send_message(message.chat.id, f"Seu ID é:\n{message.from_user.id}")
 
 
 # Data hoje
