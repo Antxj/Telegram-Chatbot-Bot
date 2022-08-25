@@ -148,13 +148,14 @@ def fotos(message):
 def handle_deia(message):
     msgideia = bot.send_message(message.chat.id, 'Qual sua a ideia?')
     bot.register_next_step_handler(msgideia, step_Set_Ideia)
-    bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada!')
+
 
 
 def step_Set_Ideia(message):
     ideiatexto = message.text
     id_criador = 1317880277  # Meu ID.
     bot.send_message(id_criador, ideiatexto)
+    bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada!')
 
 
 # Enviar mensagem
