@@ -155,7 +155,10 @@ def responder(message):
     texto = f'''
     Olá,
     
-Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn, teste: <a href="www.linkedin.com/in/antxara/">LinkedIn</a>
+Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn, teste: 
+
+<a href="www.linkedin.com/in/antxara/">LinkedIn</a>
+[LinkedIn](www.linkedin.com/in/antxara/)
 
 Interagindo por comandos, clique:
 
