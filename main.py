@@ -68,15 +68,16 @@ def handle_clima(message):
 
 def step_Set_Clima(message):
     cidade = message.text
-    requisicao = requests.get(
+    requisition = requests.get(
         f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
 
-    if requisicao != 200:
+    if requisition != 200:
+        bot.send_message(message.chat.id, f'Teste: {requisition}, Teste')
+        cidade = cidade.capitalize()
         bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, desisto!')
 
     else:
-        requisicao_dic = requisicao.json()
-
+        requisicao_dic = requisition.json()
         temperatura = requisicao_dic['main']['temp'] - 273.15
         descricao = requisicao_dic['weather'][0]['description']
         sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
