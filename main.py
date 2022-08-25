@@ -33,6 +33,14 @@ def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
 
 
+# Cotação do dólar
+@bot.message_handler(regexp="dolar|dólar|usd")
+def currency2(message):
+    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
+    resultado_currency = currency_dic['amount'].replace(".", ",")
+    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
+
+
 # Informações
 @bot.message_handler(regexp="infos|info")
 def userinfo(message):
@@ -132,14 +140,6 @@ def fotos(message):
     bot.send_message(message.chat.id, 'Se quiser ver todas, acesse: https://webbtelescope.org/resource-gallery/images')
 
 
-# Cotação do dólar
-@bot.message_handler(commands=["dolar"])
-def currency2(message):
-    currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
-    resultado_currency = currency_dic['amount'].replace(".", ",")
-    bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
-
-
 # Enviar mensagem
 @bot.message_handler(commands=["privado"])
 def sendpeloid(message):
@@ -161,15 +161,16 @@ Esta é uma demonstração simples de um bot no Telegram:
 
 Interagindo por comandos, clique:
 
+/clima - Confira o clima em uma cidade.
 /fotos - Receber fotos do Telescópio Espacial James Webb.
 /docs - Receber um documento.
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
-/dolar - Ver a cotação do dólar.
 /privado - Receber uma mensagem do bot.
 
 Interagindo por palavras, envie por exemplo:
 
+dólar - Ver a cotação do dólar.
 Hora
 Data
 Info
