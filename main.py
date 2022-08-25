@@ -90,11 +90,10 @@ def step_Set_Clima(message):
         temperatura = requisicao_dic['main']['temp'] - 273.15
         descricao = requisicao_dic['weather'][0]['description']
         sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
-        resposta_clima = f'''
-        O clima em {cidade.capitalize()}:\n
-        Temperatura: {temperatura:.2f}°C\n
-        Céu: {descricao.capitalize()}\n
-        Sensação térmica de: {sensacaotermica:.2f}°C'''
+        resposta_clima = f'''O clima em {cidade.capitalize()}:\n
+Temperatura: {temperatura:.2f}°C\n
+Céu: {descricao.capitalize()}\n
+Sensação térmica de: {sensacaotermica:.2f}°C'''
         bot.send_message(message.chat.id, resposta_clima)
 
 
@@ -146,9 +145,16 @@ def fotos(message):
 
 # Ideia ao criador
 @bot.message_handler(commands=["ideia"])
-def sendideia(message):
-    id_criador = 1317880277
-    bot.send_message(id_criador, "Oi! Eu sou um bot!")
+def handle_deia(message):
+    msgideia = bot.send_message(message.chat.id, 'Qual sua a ideia?')
+    bot.register_next_step_handler(msgideia, step_Set_Ideia)
+    bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada!')
+
+
+def step_Set_Ideia(message):
+    ideiatexto = message.text
+    id_criador = 1317880277  # Meu ID.
+    bot.send_message(id_criador, ideiatexto)
 
 
 # Enviar mensagem
@@ -161,11 +167,10 @@ def sendrivado(message):
 # Criador, eu :)
 @bot.message_handler(commands=['criador'])
 def send_criador(message):
-    add_text = """
-    Meu primeiro 'Hello World!' foi graças a este indivíduo:    
-    [LinkedIn](www.linkedin.com/in/antxara/)
-    [GitHub](https://github.com/Antxj) 
-    Obrigado!
+    add_text = """Meu primeiro 'Hello World!' foi graças a este indivíduo:    
+[LinkedIn](www.linkedin.com/in/antxara/)
+[GitHub](https://github.com/Antxj) 
+Obrigado!
         """
     bot.send_message(message.chat.id, text=add_text, parse_mode="markDown", disable_web_page_preview=True)
 
