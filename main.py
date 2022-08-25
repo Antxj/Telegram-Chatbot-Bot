@@ -155,9 +155,9 @@ def responder(message):
     texto = f'''
     Olá,
     
-Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn, teste: 
+Esta é uma demonstração de um bot no Telegram para ser inserido no LinkedIn e Github, teste: 
 
-<a href="www.linkedin.com/in/antxara/">LinkedIn</a>
+<a href="https://github.com/Antxj?tab=repositories">Github</a>
 [LinkedIn](www.linkedin.com/in/antxara/)
 
 Interagindo por comandos, clique:
@@ -172,12 +172,18 @@ Interagindo por comandos, clique:
 
 Interagindo por palavras, envie por exemplo:
 
-dólar, usd, dolar -> Cotação do dólar.
-hora, agora, horário, horario -> Hora atual.
-data, hoje, hj-> Data atual.
-info, infos -> Informações do usuário no Telegram.
+-Cotação do dólar:
+dólar, usd, dolar.
 
-      '''
+-Hora atual:
+hora, agora, horário, horario.
+
+-Data atual:
+data, hoje, hj.
+
+-Informações do usuário no Telegram:
+info, infos.
+'''
     bot.send_message(message.chat.id, texto)
 
 
