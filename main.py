@@ -79,7 +79,7 @@ def hoje(message):
 
 
 # Hora atual
-@bot.message_handler(regexp="hora|agora|horário|now|horario")
+@bot.message_handler(regexp=r"\bhora\b|agora|horário|now|horario")
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
