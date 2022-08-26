@@ -100,7 +100,7 @@ def step_Set_Clima(message):
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
-        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade {cidade}, tente novamente:\n/clima')
+        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade "{cidade}", tente novamente:\n/clima')
 
     else:
         requisicao_dic = requisition.json()
@@ -219,7 +219,7 @@ Clique na opção desejada:
 /video - Receber um vídeo. 
 
 /hora - Hora atual.
-/hoje - Data atual.
+/hoje - Data de hoje.
 
 /infos - Informações do usuário no Telegram
 /privado - Receber uma mensagem do bot.
