@@ -64,10 +64,10 @@ def currency2(message):
 @bot.message_handler(commands=['infos'])
 def userinfo(message):
     bot.send_message(message.chat.id, f"""
-Seu nome no telegram é: {message.from_user.first_name}".)
-Seu usuário no telegram é: {message.from_user.username}".)
-Está é uma conversa do tipo: {message.chat.type}".)
-Seu ID é: {message.from_user.id}")
+Seu nome no telegram é: {message.from_user.first_name}.
+Seu usuário no telegram é: {message.from_user.username}.
+Está é uma conversa do tipo: {message.chat.type}.
+Seu ID é: {message.from_user.id}.
 """)
 
 
