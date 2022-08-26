@@ -53,7 +53,7 @@ def content_types(message):
 
 
 # Cotação do dólar
-@bot.message_handler(regexp="dolar|dólar|usd")
+@bot.message_handler(commands=['dolar'])
 def currency2(message):
     currency_dic = json.loads(convert('usd', 'brl', 1))  # json to dic
     resultado_currency = currency_dic['amount'].replace(".", ",")
@@ -61,7 +61,7 @@ def currency2(message):
 
 
 # Informações
-@bot.message_handler(regexp="infos|info")
+@bot.message_handler(commands=['infos'])
 def userinfo(message):
     bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}")
     bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}")
@@ -71,7 +71,7 @@ def userinfo(message):
 
 
 # Data hoje
-@bot.message_handler(regexp="data|hoje|hj")
+@bot.message_handler(commands=['hoje'])
 def hoje(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_hoje = datetime.now(tz).strftime("%d/%m/%Y")
@@ -79,7 +79,7 @@ def hoje(message):
 
 
 # Hora atual
-@bot.message_handler(regexp="hora|agora|horário|now|horario")
+@bot.message_handler(commands=['hora'])
 def agora(message):
     tz = pytz.timezone('America/Sao_Paulo')
     brasil_now = datetime.now(tz).strftime("%Hh%Mm")
@@ -206,31 +206,25 @@ def verificar(message):
 def responder(message):
     texto = f'''
 
-Interagindo por comandos, clique:
+Clique na opção desejada:
 
+/dolar - Cotação do dólar
 /clima - Confira o clima em uma cidade.
+
 /fotos - Receber fotos do Telescópio Espacial James Webb.
 /docs - Receber um documento.
 /audio - Receber um áudio. 
 /video - Receber um vídeo. 
+
+/hora - Hora atual.
+/hoje - Data atual.
+
+/infos - Informações do usuário no Telegram
 /privado - Receber uma mensagem do bot.
 /criador - Criador do bot.
+
 /ideia - Enviar uma ideia ao criador do bot.
 
-
-Interagindo por palavras, envie por exemplo:
-
--Cotação do dólar:
-dólar, usd, dolar.
-
--Hora atual:
-hora, agora, horário, horario.
-
--Data atual:
-data, hoje, hj.
-
--Informações do usuário no Telegram:
-info, infos.
 '''
     bot.send_message(message.chat.id, texto)
 
