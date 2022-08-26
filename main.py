@@ -31,7 +31,7 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 # Bem-vindo(a)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.username}!")
+    bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.first_name}!")
     ad_text = """
     Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github:
     [LinkedIn](www.linkedin.com/in/antxara/)
@@ -63,11 +63,12 @@ def currency2(message):
 # Informações
 @bot.message_handler(commands=['infos'])
 def userinfo(message):
-    bot.send_message(message.chat.id, f"Seu nome no telegram é: {message.from_user.first_name}")
-    bot.send_message(message.chat.id, f"Seu usuário no telegram é: {message.from_user.username}")
-    bot.send_message(message.chat.id, f"Está é uma conversa do tipo: {message.chat.type}")
-    bot.send_message(message.chat.id, f"Seu chatID é:\n{message.chat.id}")
-    bot.send_message(message.chat.id, f"Seu ID é:\n{message.from_user.id}")
+    bot.send_message(message.chat.id, f"""
+Seu nome no telegram é: {message.from_user.first_name}".)
+Seu usuário no telegram é: {message.from_user.username}".)
+Está é uma conversa do tipo: {message.chat.type}".)
+Seu ID é: {message.from_user.id}")
+""")
 
 
 # Data hoje
@@ -99,7 +100,7 @@ def step_Set_Clima(message):
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
-        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade: {cidade}, tente novamente:\n/clima')
+        bot.send_message(message.chat.id, f'Desculpa, não encontrei a cidade {cidade}, tente novamente:\n/clima')
 
     else:
         requisicao_dic = requisition.json()
@@ -169,7 +170,7 @@ def handle_deia(message):
 def step_Set_Ideia(message):
     ideiatexto = message.text
     id_criador = 1317880277  # Meu ID.
-    bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.username} ({message.from_user.first_name}), '
+    bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.first_name} ({message.from_user.username}), '
                                  f'ID: {message.from_user.id}:\n{ideiatexto}')
     bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada ao criador, espero que ele goste!')
     with open('usersinfo/users_ideias.csv', 'a') as csv:
@@ -205,7 +206,8 @@ def verificar(message):
 @bot.message_handler(func=verificar)
 def responder(message):
     texto = f'''
-
+        MENU
+        
 Clique na opção desejada:
 
 /dolar - Cotação do dólar
