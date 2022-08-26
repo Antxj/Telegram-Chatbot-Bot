@@ -205,7 +205,7 @@ def verificar(message):
 @bot.message_handler(func=verificar)
 def responder(message):
     texto = f'''
-         MENU
+
 Clique na opção desejada:
 
 /dolar - Cotação do dólar
