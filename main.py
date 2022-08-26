@@ -8,22 +8,16 @@ from google_currency import convert
 import requests
 import pandas as pd
 
-
 # Keys
-api_key_bot = os.environ['KEY_BOT_HEROKU']
-api_key_clima = os.environ['KEY_CLIMA_HEROKU']
+api_key_bot = os.environ['KEY_BOT']
+api_key_clima = os.environ['KEY_CLIMA']
 
 # import apis_key
 # api_key_clima = apis_key.api_key_clima
 # api_key_bot = apis_key.api_bot
 
-# api_key_bot = os.environ['KEY_BOT_RENDER']
-# api_key_clima = os.environ['KEY_CLIMA_RENDER']
-
-
 # Bot
 bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
-
 logger = tb.logger
 tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
@@ -33,9 +27,9 @@ tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / 
 def send_welcome(message):
     bot.send_message(message.chat.id, f"Bem-vindo(a) {message.from_user.first_name}!")
     ad_text = """
-    Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github:
-    [LinkedIn](www.linkedin.com/in/antxara/)
-    [GitHub](https://github.com/Antxj) 
+Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github:
+[LinkedIn](www.linkedin.com/in/antxara/)
+[GitHub](https://github.com/Antxj) 
         """
     bot.send_message(message.chat.id, text=ad_text, parse_mode="markDown", disable_web_page_preview=True)
 
@@ -47,7 +41,8 @@ def send_welcome(message):
 
 
 # Recebendo arquivos e etc...
-@bot.message_handler(content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
+@bot.message_handler(
+    content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
 
@@ -96,7 +91,8 @@ def handle_clima(message):
 
 def step_Set_Clima(message):
     cidade = message.text
-    requisition = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
+    requisition = requests.get(
+        f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
@@ -107,10 +103,12 @@ def step_Set_Clima(message):
         temperatura = requisicao_dic['main']['temp'] - 273.15
         descricao = requisicao_dic['weather'][0]['description']
         sensacaotermica = requisicao_dic['main']['feels_like'] - 273.15
-        resposta_clima = f'''O clima em {cidade.capitalize()}:\n
+        resposta_clima = f'''
+O clima em {cidade.capitalize()}:\n
 Temperatura: {temperatura:.2f}°C
 Céu: {descricao.capitalize()}
-Sensação térmica de: {sensacaotermica:.2f}°C'''
+Sensação térmica de: {sensacaotermica:.2f}°C
+'''
         bot.send_message(message.chat.id, resposta_clima)
 
 
@@ -182,7 +180,7 @@ def step_Set_Ideia(message):
 
 # Enviar mensagem
 @bot.message_handler(commands=["privado"])
-def sendrivado(message):
+def sendprivado(message):
     id_destino = message.chat.id
     bot.send_message(id_destino, "Oi! Eu sou um bot!")
 
@@ -190,7 +188,8 @@ def sendrivado(message):
 # Criador, eu :)
 @bot.message_handler(commands=['criador'])
 def send_criador(message):
-    add_text = """Meu primeiro 'Hello World!' foi graças a este indivíduo:    
+    add_text = """
+Meu primeiro 'Hello World!' foi graças a este indivíduo:    
 [LinkedIn](www.linkedin.com/in/antxara/)
 [GitHub](https://github.com/Antxj) 
 Obrigado!
@@ -206,8 +205,7 @@ def verificar(message):
 @bot.message_handler(func=verificar)
 def responder(message):
     texto = f'''
-        MENU
-        
+         MENU
 Clique na opção desejada:
 
 /dolar - Cotação do dólar
@@ -236,3 +234,4 @@ bot.infinity_polling()
 
 # bot.send_message(1317880277, 'Hi! I\'m a Bot!')
 # bot5727655671
+#
