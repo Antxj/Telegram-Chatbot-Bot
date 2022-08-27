@@ -236,7 +236,7 @@ def verificar(message):
 def responder(message):
     texto_geral = f'''
 Hmm.. não entendi.
-Clique em /menu para ver as opções.
+Clique em ou envie /menu para ver as opções.
     '''
     bot.send_message(message.chat.id, texto_geral)
 
