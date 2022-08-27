@@ -29,8 +29,10 @@ def send_welcome(message):
     ad_text = """
 Esta é uma demonstração de um bot no Telegram para ser inserido no meu LinkedIn e Github:
 [LinkedIn](www.linkedin.com/in/antxara/)
-[GitHub](https://github.com/Antxj) 
-        """
+[GitHub](https://github.com/Antxj)
+
+Clique em /menu para ver as opções!
+"""
     bot.send_message(message.chat.id, text=ad_text, parse_mode="markDown", disable_web_page_preview=True)
 
     with open('usersinfo/users_start.csv', 'a') as csv:
@@ -197,36 +199,46 @@ Obrigado!
     bot.send_message(message.chat.id, text=add_text, parse_mode="markDown", disable_web_page_preview=True)
 
 
-# Menu padrão se não bater com nada
+# Menu
+@bot.message_handler(commands=["menu"])
+def menu(message):
+    texto_menu = f'''
+
+    Clique na opção desejada:
+
+    /dolar - Cotação do dólar
+    /clima - Confira o clima em uma cidade.
+
+    /fotos - Receber fotos do Telescópio Espacial James Webb.
+    /docs - Receber um documento.
+    /audio - Receber um áudio. 
+    /video - Receber um vídeo. 
+
+    /hora - Hora atual.
+    /hoje - Data de hoje.
+
+    /infos - Informações do usuário no Telegram
+    /privado - Receber uma mensagem do bot.
+    /criador - Criador do bot.
+
+    /ideia - Enviar uma ideia ao criador do bot.
+
+    '''
+    bot.send_message(message.chat.id, texto_menu)
+
+
+# Mensagem padrão se não bater com nada.
 def verificar(message):
     return True
 
 
 @bot.message_handler(func=verificar)
 def responder(message):
-    texto = f'''
-
-Clique na opção desejada:
-
-/dolar - Cotação do dólar
-/clima - Confira o clima em uma cidade.
-
-/fotos - Receber fotos do Telescópio Espacial James Webb.
-/docs - Receber um documento.
-/audio - Receber um áudio. 
-/video - Receber um vídeo. 
-
-/hora - Hora atual.
-/hoje - Data de hoje.
-
-/infos - Informações do usuário no Telegram
-/privado - Receber uma mensagem do bot.
-/criador - Criador do bot.
-
-/ideia - Enviar uma ideia ao criador do bot.
-
-'''
-    bot.send_message(message.chat.id, texto)
+    texto_geral = f'''
+Hmm.. não entendi.
+Clique em /menu para ver as opções.
+    '''
+    bot.send_message(message.chat.id, texto_geral)
 
 
 # Sempre aguardando interação
