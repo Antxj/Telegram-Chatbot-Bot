@@ -46,7 +46,7 @@ Clique em /menu para ver as opções!
 @bot.message_handler(content_types=["audio", "sticker", "document",
                                     "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
-    bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
+    bot.send_message(message.chat.id, 'Ainda não consigo entender esse tipo de coisa...manda um /menu.')
 
 
 # Cotação do dólar
