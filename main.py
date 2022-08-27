@@ -43,8 +43,8 @@ Clique em /menu para ver as opções!
 
 
 # Recebendo arquivos e etc...
-@bot.message_handler(
-    content_types=["audio", "sticker", "document", "photo", "video", "location", "contact", "video_note"])
+@bot.message_handler(content_types=["audio", "sticker", "document",
+                                    "photo", "video", "location", "contact", "video_note"])
 def content_types(message):
     bot.send_message(message.chat.id, 'Pô to meio cansado...manda texto aí.')
 
@@ -88,13 +88,14 @@ def agora(message):
 @bot.message_handler(commands=['clima'])
 def handle_clima(message):
     msgclima = bot.send_message(message.chat.id, 'Quer saber o clima de qual cidade?')
-    bot.register_next_step_handler(msgclima, step_Set_Clima)
+    bot.register_next_step_handler(msgclima, step_set_clima)
 
 
-def step_Set_Clima(message):
+def step_set_clima(message):
     cidade = message.text
     requisition = requests.get(
-        f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
+        f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&'
+        f'appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
@@ -164,10 +165,10 @@ def fotos(message):
 @bot.message_handler(commands=["ideia"])
 def handle_deia(message):
     msgideia = bot.send_message(message.chat.id, 'Qual sua a ideia?')
-    bot.register_next_step_handler(msgideia, step_Set_Ideia)
+    bot.register_next_step_handler(msgideia, step_set_ideia)
 
 
-def step_Set_Ideia(message):
+def step_set_ideia(message):
     ideiatexto = message.text
     id_criador = 1317880277  # Meu ID.
     bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.first_name} ({message.from_user.username}), '
