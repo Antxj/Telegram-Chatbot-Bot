@@ -9,17 +9,17 @@ import requests
 import pandas as pd
 
 # Keys
-api_key_bot = os.environ['KEY_BOT']
-api_key_clima = os.environ['KEY_CLIMA']
+api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
+api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
 # import apis_key
 # api_key_clima = apis_key.api_key_clima
 # api_key_bot = apis_key.api_bot
 
 # Bot
-bot = tb.TeleBot(api_key_bot)  # Heroku Config Vars
+bot = tb.TeleBot(api_key_bot)
 logger = tb.logger
-tb.logger.setLevel(logging.DEBUG)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
+tb.logger.setLevel(logging.INFO)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
 
 # Bem-vindo(a)
