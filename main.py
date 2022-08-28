@@ -2,13 +2,12 @@ import telebot as tb
 import logging
 from datetime import datetime
 import pytz
-import os
 import json
 from google_currency import convert
 import requests
-import pandas as pd
 
 # Keys
+
 api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
 api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
@@ -20,6 +19,35 @@ api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 bot = tb.TeleBot(api_key_bot)
 logger = tb.logger
 tb.logger.setLevel(logging.INFO)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
+
+
+# Salvar membros
+class Cliente:
+    def __init__(self, user_id, user_firstname, user_username):
+        self.user_id = user_id
+        self.user_firstname = user_firstname
+        self.user_username = user_username
+
+    def salvar_cliente_start(self):
+        membros_data = {
+        "UserID": self.user_id,
+        "FirstName": self.user_firstname,
+        "Username": self.user_username
+        }
+        with open("usersinfo/users_start.json", "a", encoding='utf-8') as arquivo:
+            json.dump(membros_data, arquivo, ensure_ascii=False)
+            arquivo.write(',\n')
+
+    def salvar_cliente_ideia(self, ideiatexto):
+        membros_data = {
+        "UserID": self.user_id,
+        "FirstName": self.user_firstname,
+        "Username": self.user_username,
+        "Ideia": ideiatexto
+        }
+        with open("usersinfo/users_ideias.json", "a", encoding='utf-8') as arquivo:
+            json.dump(membros_data, arquivo, ensure_ascii=False)
+            arquivo.write(',\n')
 
 
 # Bem-vindo(a)
@@ -35,11 +63,8 @@ Clique em /menu para ver as opções!
 """
     bot.send_message(message.chat.id, text=ad_text, parse_mode="markDown", disable_web_page_preview=True)
 
-    with open('usersinfo/users_start.csv', 'a') as csv:
-        texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}\n'
-        csv.write(texto)
-        users_start_data = pd.read_csv('usersinfo/users_start.csv')
-        print(users_start_data.head())
+    cliente = Cliente(message.from_user.id, message.from_user.first_name, message.from_user.username)
+    cliente.salvar_cliente_start()
 
 
 # Recebendo arquivos e etc...
@@ -174,11 +199,9 @@ def step_set_ideia(message):
     bot.send_message(id_criador, f'Ideia enviada pelo {message.from_user.first_name} ({message.from_user.username}), '
                                  f'ID: {message.from_user.id}:\n{ideiatexto}')
     bot.send_message(message.chat.id, 'Obrigado, sua ideia foi enviada ao criador, espero que ele goste!')
-    with open('usersinfo/users_ideias.csv', 'a') as csv:
-        texto = f'{message.from_user.id},{message.from_user.first_name}, {message.from_user.username}, {ideiatexto}\n'
-        csv.write(texto)
-        users_ideias_data = pd.read_csv('usersinfo/users_ideias.csv')
-        print(users_ideias_data.head())
+
+    cliente = Cliente(message.from_user.id, message.from_user.first_name, message.from_user.username)
+    cliente.salvar_cliente_ideia(ideiatexto)
 
 
 # Enviar mensagem
