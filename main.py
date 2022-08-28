@@ -6,8 +6,9 @@ import json
 from google_currency import convert
 import requests
 
-# Keys
 
+# Keys
+import os
 api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
 api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
