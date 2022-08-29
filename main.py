@@ -102,6 +102,7 @@ def step_set_cep(message):  # https://viacep.com.br/
         requisicao = requests.get(link)
         dict_requisicao = requisicao.json()
         if erro in dict_requisicao:
+            print('Motivo do erro: CEP não existe!')
             bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente: /cep')
             print('Motivo do erro: CEP não existe!')
         else:
