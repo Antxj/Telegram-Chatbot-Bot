@@ -99,7 +99,10 @@ def step_set_cep(message):  # https://viacep.com.br/
     requisicao = requests.get(link)
     dict_requisicao = requisicao.json()
 
-    if requisicao.status_code == 200:
+    if requisicao.status_code != 200:
+        bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
+
+    elif requisicao.status_code == 200:
         cidade = dict_requisicao['localidade']
         uf = dict_requisicao['uf']
         logradouro = dict_requisicao['logradouro']
@@ -115,9 +118,6 @@ Complemento: {complemento}
 CEP: {cep}
     """)
         bot.send_message(message.chat.id, resultado_cep)
-
-    elif requisicao.status_code != 200:
-        bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
 
     else:
         erro = dict_requisicao['erro']
