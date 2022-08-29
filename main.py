@@ -92,14 +92,14 @@ def handle_cep(message):
     bot.register_next_step_handler(msgcep, step_set_cep)
 
 
-def step_set_cep(message):
+def step_set_cep(message):  # https://viacep.com.br/
     cep_indicado = message.text
     cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
     link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
+    requisicao = requests.get(link)
+    dict_requisicao = requisicao.json()
 
-    if len(cep_indicado) == 8:
-        requisicao = requests.get(link)
-        dict_requisicao = requisicao.json()
+    if requisicao.status_code == 200:
         cidade = dict_requisicao['localidade']
         uf = dict_requisicao['uf']
         logradouro = dict_requisicao['logradouro']
@@ -116,7 +116,7 @@ CEP: {cep}
     """)
         bot.send_message(message.chat.id, resultado_cep)
 
-    elif len(cep_indicado) != 8:
+    elif requisicao.status_code != 200:
         bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
 
     else:
