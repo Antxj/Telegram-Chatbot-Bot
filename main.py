@@ -104,6 +104,7 @@ def step_set_cep(message):  # https://viacep.com.br/
         if erro in dict_requisicao:
             print(f"Yes, key: '{erro}' exists in dictionary")
             bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente: /cep')
+            raise KeyError('Error: CEP não existe.')
 
         else:
             pass
