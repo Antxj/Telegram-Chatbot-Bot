@@ -127,8 +127,6 @@ CEP: {cep}
         bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
 
 
-
-
 # Informações
 @bot.message_handler(commands=['infos'])
 def userinfo(message):
