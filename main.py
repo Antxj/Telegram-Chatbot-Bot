@@ -7,7 +7,7 @@ from google_currency import convert
 import requests
 
 
-# Keys
+Keys
 import os
 api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
 api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
@@ -96,13 +96,10 @@ def step_set_cep(message):  # https://viacep.com.br/
     cep_indicado = message.text
     cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
     link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
-    requisicao = requests.get(link)
-    dict_requisicao = requisicao.json()
 
-    if requisicao.status_code != 200:
-        bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
-
-    elif requisicao.status_code == 200:
+    if len(cep_indicado) == 8:
+        requisicao = requests.get(link)
+        dict_requisicao = requisicao.json()
         cidade = dict_requisicao['localidade']
         uf = dict_requisicao['uf']
         logradouro = dict_requisicao['logradouro']
@@ -120,9 +117,9 @@ CEP: {cep}
         bot.send_message(message.chat.id, resultado_cep)
 
     else:
-        erro = dict_requisicao['erro']
-        if erro == 'true':
-            bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente: /cep')
+        bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
+
+
 
 
 # Informações
