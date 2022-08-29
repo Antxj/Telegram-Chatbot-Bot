@@ -8,13 +8,13 @@ import requests
 
 
 # Keys
-import os
-api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
-api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
+# import os
+# api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
+# api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
-# import apis_key
-# api_key_clima = apis_key.api_key_clima
-# api_key_bot = apis_key.api_bot
+import apis_key
+api_key_clima = apis_key.api_key_clima
+api_key_bot = apis_key.api_bot
 
 # Bot
 bot = tb.TeleBot(api_key_bot)
@@ -83,6 +83,40 @@ def currency2(message):
     resultado_currency = currency_dic['amount'].replace(".", ",")
     print(resultado_currency)
     bot.send_message(message.chat.id, f'Cotação atual do dólar:\nR${resultado_currency}')
+
+
+# CEP
+@bot.message_handler(commands=['cep'])
+def handle_cep(message):
+    msgcep = bot.send_message(message.chat.id, 'Qual o CEP?')
+    bot.register_next_step_handler(msgcep, step_set_cep)
+
+
+def step_set_cep(message):
+    cep_indicado = message.text
+    cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
+    if len(cep_indicado) == 8:
+        link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
+        requisicao = requests.get(link)
+        dict_requisicao = requisicao.json()
+        cidade = dict_requisicao['localidade']
+        uf = dict_requisicao['uf']
+        logradouro = dict_requisicao['logradouro']
+        bairro = dict_requisicao['bairro']
+        cep = dict_requisicao['cep']
+        complemento = dict_requisicao['complemento']
+        resultado_cep = (f"""
+Cidade: {cidade}
+UF: {uf}
+Logradouro: {logradouro}
+Bairro: {bairro}
+Complemento: {complemento}
+CEP: {cep}
+    """)
+        bot.send_message(message.chat.id, resultado_cep)
+
+    else:
+        bot.send_message(message.chat.id, 'CEP inválido, tente novamente:\n/cep')
 
 
 # Informações
@@ -235,6 +269,7 @@ def menu(message):
 
     /dolar - Cotação do dólar
     /clima - Confira o clima em uma cidade.
+    /cep - Descobrir endereço pelo CEP.
 
     /fotos - Receber fotos do Telescópio Espacial James Webb.
     /docs - Receber um documento.
@@ -273,4 +308,4 @@ bot.infinity_polling()
 
 # bot.send_message(1317880277, 'Hi! I\'m a Bot!')
 # bot5727655671
-#
+
