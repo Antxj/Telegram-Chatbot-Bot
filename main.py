@@ -96,7 +96,6 @@ def step_set_cep(message):  # https://viacep.com.br/
     cep_indicado = message.text
     cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
     link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
-    print(cep_indicado.isnumeric())
 
     if len(cep_indicado) == 8 and cep_indicado.isnumeric():
         requisicao = requests.get(link)
