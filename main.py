@@ -120,7 +120,9 @@ CEP: {cep}
         bot.send_message(message.chat.id, 'CEP inválido, tente novamente: /cep')
 
     else:
-        bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente: /cep')
+        erro = dict_requisicao['erro']
+        if erro == 'true':
+            bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente: /cep')
 
 
 # Informações
