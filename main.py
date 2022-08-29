@@ -8,13 +8,13 @@ import requests
 
 
 # Keys
-# import os
-# api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
-# api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
+import os
+api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
+api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
-import apis_key
-api_key_clima = apis_key.api_key_clima
-api_key_bot = apis_key.api_bot
+# import apis_key
+# api_key_clima = apis_key.api_key_clima
+# api_key_bot = apis_key.api_bot
 
 # Bot
 bot = tb.TeleBot(api_key_bot)
