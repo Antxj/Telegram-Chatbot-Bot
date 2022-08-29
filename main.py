@@ -95,10 +95,14 @@ def handle_cep(message):
 def step_set_cep(message):
     cep_indicado = message.text
     cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
-    if len(cep_indicado) == 8:
-        link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
-        requisicao = requests.get(link)
-        dict_requisicao = requisicao.json()
+    link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
+    requisicao = requests.get(link)
+    dict_requisicao = requisicao.json()
+
+    if requisicao.status_code == 200 and dict_requisicao['erro'] == 'true':
+        bot.send_message(message.chat.id, 'CEP não encontrado, tente novamente:\n/cep')
+
+    elif len(cep_indicado) == 8:
         cidade = dict_requisicao['localidade']
         uf = dict_requisicao['uf']
         logradouro = dict_requisicao['logradouro']
