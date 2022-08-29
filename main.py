@@ -96,10 +96,15 @@ def step_set_cep(message):  # https://viacep.com.br/
     cep_indicado = message.text
     cep_indicado = cep_indicado.replace('.', '').replace('-', '').replace(' ', '')
     link = f'https://viacep.com.br/ws/{cep_indicado}/json/'
+    erro = 'erro'
 
     if len(cep_indicado) == 8 and cep_indicado.isnumeric():
         requisicao = requests.get(link)
         dict_requisicao = requisicao.json()
+        if erro in dict_requisicao:
+            print(f"Yes, key: '{erro}' exists in dictionary")
+        else:
+            pass
         cidade = dict_requisicao['localidade']
         uf = dict_requisicao['uf']
         logradouro = dict_requisicao['logradouro']
