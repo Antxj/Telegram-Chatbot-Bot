@@ -9,8 +9,8 @@ import requests
 
 # Keys
 import os
-KEY_BOT = os.environ['KEY_BOT']  # Heroku Config Vars
-KEY_CLIMA = os.environ['KEY_CLIMA']  # Heroku Config Vars
+KEY_BOT = os.environ['KEY_BOT']  # .env
+KEY_CLIMA = os.environ['KEY_CLIMA']  # .env
 
 # import apis_key
 # KEY_CLIMA = apis_key.KEY_CLIMA
