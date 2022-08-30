@@ -12,6 +12,7 @@ import os
 KEY_BOT = os.environ['KEY_BOT']  # .env
 KEY_CLIMA = os.environ['KEY_CLIMA']  # .env
 
+
 # import apis_key
 # KEY_CLIMA = apis_key.KEY_CLIMA
 # KEY_BOT = apis_key.KEY_BOT
