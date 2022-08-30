@@ -9,15 +9,15 @@ import requests
 
 # Keys
 import os
-api_key_bot = os.environ['KEY_BOT']  # Heroku Config Vars
-api_key_clima = os.environ['KEY_CLIMA']  # Heroku Config Vars
+KEY_BOT = os.environ['KEY_BOT']  # Heroku Config Vars
+KEY_CLIMA = os.environ['KEY_CLIMA']  # Heroku Config Vars
 
 # import apis_key
-# api_key_clima = apis_key.api_key_clima
-# api_key_bot = apis_key.api_bot
+# KEY_CLIMA = apis_key.KEY_CLIMA
+# KEY_BOT = apis_key.KEY_BOT
 
 # Bot
-bot = tb.TeleBot(api_key_bot)
+bot = tb.TeleBot(KEY_BOT)
 logger = tb.logger
 tb.logger.setLevel(logging.INFO)  # Outputs messages to console INFO / DEBUG / NOTSET / WARNING / ERROR / CRITICAL
 
@@ -164,7 +164,7 @@ def step_set_clima(message):
     cidade = message.text
     requisition = requests.get(
         f'https://api.openweathermap.org/data/2.5/weather?q={cidade}&'
-        f'appid={api_key_clima}&lang=pt_br')  # 200 = Válida / 404  = Inválida
+        f'appid={KEY_CLIMA}&lang=pt_br')  # 200 = Válida / 404  = Inválida
 
     if requisition.status_code != 200:
         cidade = cidade.capitalize()
